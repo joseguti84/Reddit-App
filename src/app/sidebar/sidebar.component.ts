@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {RedditService} from "../shared/services/reddit.service";
+import {Post} from "../shared/models/post";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  @Output() selectPost = new EventEmitter<Post>();
+
+  posts: Post[] = [];
+
+  constructor(private redditService: RedditService) { }
 
   ngOnInit(): void {
+    this.redditService.getTopPosts().subscribe(posts => {
+      this.posts = posts;
+    })
   }
-
 }

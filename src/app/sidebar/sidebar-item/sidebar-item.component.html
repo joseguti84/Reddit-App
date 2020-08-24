@@ -1,0 +1,11 @@
+<div class="sidebar-item" (click)="onSelectPost(post)">
+  <div>{{post?.author}} {{getEntryDate(post.date)}}</div>
+  <div>
+    <img [src]="post.thumbnail" />
+    <span>{{post?.title}}</span>
+  </div>
+  <div>
+    <button>Dismiss Post</button>
+    <span>{{post?.num_comments}} comments</span>
+  </div>
+</div>

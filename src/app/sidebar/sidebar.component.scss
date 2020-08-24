@@ -1,13 +1,17 @@
 $sidebarTitleHeight: 80px;
 $sidebarFooterHeight: 60px;
+$sidebarWidth: 400px;
 
 .sidebar {
   position: relative;
   height: 100%;
-  width: 400px;
-
+  width: $sidebarWidth;
 
   &__title{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebarWidth;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,11 +25,17 @@ $sidebarFooterHeight: 60px;
   }
 
   &__content{
+    margin: $sidebarTitleHeight 0 $sidebarFooterHeight;
     height: calc(100% - #{$sidebarTitleHeight} - #{$sidebarFooterHeight});
+    overflow: auto;
   }
 
   &__footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
     display: flex;
+    width: $sidebarWidth;
     justify-content: center;
     align-items: center;
     height: $sidebarFooterHeight;
