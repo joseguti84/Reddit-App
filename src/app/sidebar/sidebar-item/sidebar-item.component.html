@@ -1,18 +1,18 @@
 <div class="sidebar-item">
   <div class="sidebar-item__title">
-    <span>{{post?.clicked}}</span>
+    <mat-icon class="sidebar-item__title__unread__icon" aria-hidden="false" aria-label="unread" color="accent" *ngIf="!post.clicked">fiber_manual_record</mat-icon>
     <strong>{{post?.author}}</strong>
     <span>{{post?.date | entryDate}}</span>
   </div>
   <div class="sidebar-item__detail" (click)="onSelectPost(post)">
-    <img [src]="post.thumbnail !== 'default' ? post.thumbnail : '../../../assets/images/default.svg'"/>
+    <img [src]="getImage(post)"/>
     <span class="sidebar-item__detail__name">{{post?.title}}</span>
     <span class="sidebar-item__detail__icon">
       <mat-icon>keyboard_arrow_right</mat-icon>
     </span>
   </div>
   <div class="sidebar-item__footer">
-    <button mat-button color="primary" (click)="dismissPost(post)">
+    <button mat-button color="accent" (click)="dismissPost(post)">
       <mat-icon aria-hidden="false" aria-label="Dismiss">highlight_off</mat-icon>
       Dismiss Post
     </button>

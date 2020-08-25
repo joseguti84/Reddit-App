@@ -7,6 +7,8 @@ $sidebarWidth: 400px;
   height: calc(100% - #{$sidebarTitleHeight} - #{$sidebarFooterHeight});
   padding: $sidebarTitleHeight 0 $sidebarFooterHeight;
   width: $sidebarWidth;
+  background: #000000;
+  color: #FFFFFF;
 
   &__title{
     position: fixed;
@@ -17,7 +19,6 @@ $sidebarWidth: 400px;
     justify-content: center;
     align-items: center;
     height: $sidebarTitleHeight;
-    background: #000000;
 
     h1 {
       color: #FFFFFF;
@@ -39,6 +40,5 @@ $sidebarWidth: 400px;
     justify-content: center;
     align-items: center;
     height: $sidebarFooterHeight;
-    background: #000000;
   }
 }

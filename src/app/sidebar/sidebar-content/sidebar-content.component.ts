@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from "../../shared/models/post";
-import {RedditService} from "../../shared/services/reddit.service";
+import {getPostImage} from "../../shared/utilities";
 
 @Component({
   selector: 'app-sidebar-content',
@@ -9,11 +9,15 @@ import {RedditService} from "../../shared/services/reddit.service";
 })
 export class SidebarContentComponent implements OnInit {
 
-  selectedPost: Post;
+  @Input() selectedPost: Post;
 
-  constructor(private redditService: RedditService) {
-    this.redditService.getSelectedPost().subscribe(post => this.selectedPost = post);
+  constructor() {
+
   }
+
+  getImage = (post) => {
+    return getPostImage(post);
+  };
 
   ngOnInit(): void {
   }

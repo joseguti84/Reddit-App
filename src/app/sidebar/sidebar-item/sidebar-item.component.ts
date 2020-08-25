@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Post} from "../../shared/models/post";
 import {RedditService} from "../../shared/services/reddit.service";
+import {getPostImage} from "../../shared/utilities";
 
 @Component({
   selector: 'app-sidebar-item',
@@ -16,6 +17,10 @@ export class SidebarItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  getImage = (post) => {
+    return getPostImage(post);
+  };
 
   onSelectPost = (post) => {
     this.redditService.setSelectedPost(post);

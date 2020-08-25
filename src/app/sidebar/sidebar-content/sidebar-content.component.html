@@ -4,7 +4,7 @@
     <span>{{selectedPost.date | entryDate}}</span>
   </div>
   <div class="sidebar-content__detail">
-    <img [src]="selectedPost.thumbnail !== 'default' ? selectedPost.thumbnail : '../../../assets/images/default.svg'"/>
+    <img [src]="getImage(selectedPost)"/>
     <span>{{selectedPost.title}}</span>
   </div>
   <div class="sidebar-content__footer">

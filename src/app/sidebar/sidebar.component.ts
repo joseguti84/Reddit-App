@@ -20,4 +20,8 @@ export class SidebarComponent implements OnInit {
       this.posts = posts;
     })
   }
+
+  dismissAllPosts = () => {
+    //TODO: review the reddit api to dismiss all posts
+  };
 }
