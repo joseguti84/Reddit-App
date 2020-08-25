@@ -1,0 +1,13 @@
+<div class="sidebar-content" *ngIf="selectedPost">
+  <div class="sidebar-content__title">
+    <h1>{{selectedPost.author}}</h1>
+    <span>{{selectedPost.date | entryDate}}</span>
+  </div>
+  <div class="sidebar-content__detail">
+    <img [src]="selectedPost.thumbnail !== 'default' ? selectedPost.thumbnail : '../../../assets/images/default.svg'"/>
+    <span>{{selectedPost.title}}</span>
+  </div>
+  <div class="sidebar-content__footer">
+    <strong>{{selectedPost.num_comments}} comments</strong>
+  </div>
+</div>

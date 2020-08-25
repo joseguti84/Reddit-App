@@ -4,7 +4,8 @@ $sidebarWidth: 400px;
 
 .sidebar {
   position: relative;
-  height: 100%;
+  height: calc(100% - #{$sidebarTitleHeight} - #{$sidebarFooterHeight});
+  padding: $sidebarTitleHeight 0 $sidebarFooterHeight;
   width: $sidebarWidth;
 
   &__title{
@@ -25,8 +26,7 @@ $sidebarWidth: 400px;
   }
 
   &__content{
-    margin: $sidebarTitleHeight 0 $sidebarFooterHeight;
-    height: calc(100% - #{$sidebarTitleHeight} - #{$sidebarFooterHeight});
+    height: 100%;
     overflow: auto;
   }
 

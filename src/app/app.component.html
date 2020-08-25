@@ -2,5 +2,7 @@
   <mat-sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'">
     <app-sidebar></app-sidebar>
   </mat-sidenav>
-  <mat-sidenav-content>Post Detail</mat-sidenav-content>
+  <mat-sidenav-content>
+    <app-sidebar-content></app-sidebar-content>
+  </mat-sidenav-content>
 </mat-sidenav-container>

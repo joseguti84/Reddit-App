@@ -1,11 +1,21 @@
-<div class="sidebar-item" (click)="onSelectPost(post)">
-  <div>{{post?.author}} {{getEntryDate(post.date)}}</div>
-  <div>
-    <img [src]="post.thumbnail" />
-    <span>{{post?.title}}</span>
+<div class="sidebar-item">
+  <div class="sidebar-item__title">
+    <span>{{post?.clicked}}</span>
+    <strong>{{post?.author}}</strong>
+    <span>{{post?.date | entryDate}}</span>
   </div>
-  <div>
-    <button>Dismiss Post</button>
-    <span>{{post?.num_comments}} comments</span>
+  <div class="sidebar-item__detail" (click)="onSelectPost(post)">
+    <img [src]="post.thumbnail !== 'default' ? post.thumbnail : '../../../assets/images/default.svg'"/>
+    <span class="sidebar-item__detail__name">{{post?.title}}</span>
+    <span class="sidebar-item__detail__icon">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </span>
+  </div>
+  <div class="sidebar-item__footer">
+    <button mat-button color="primary" (click)="dismissPost(post)">
+      <mat-icon aria-hidden="false" aria-label="Dismiss">highlight_off</mat-icon>
+      Dismiss Post
+    </button>
+    <strong>{{post?.num_comments}} comments</strong>
   </div>
 </div>

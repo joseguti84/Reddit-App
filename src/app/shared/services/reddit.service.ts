@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {Post} from "../models/post";
 import {map} from "rxjs/operators";
 import {Reddit} from "../models/reddit";
@@ -10,7 +10,17 @@ import {Reddit} from "../models/reddit";
 })
 export class RedditService {
 
+  private selectedPost: BehaviorSubject<Post> = new BehaviorSubject(null);
+
   constructor(private http: HttpClient) {
+  }
+
+  getSelectedPost(): Observable<Post> {
+    return this.selectedPost;
+  }
+
+  setSelectedPost(post: Post): void {
+    this.selectedPost.next(post);
   }
 
   getTopPosts(count = 50): Observable<any> {
@@ -22,5 +32,13 @@ export class RedditService {
       }
       return [];
     }));
+  }
+
+  dismissPost(id): Observable<any> {
+    return this.http.post(`https://www.reddit.com/api/hide`, {id: id});
+  }
+
+  readPost(id): Observable<any> {
+    return this.http.post(`https://www.reddit.com/api/read_message`, {id: id});
   }
 }

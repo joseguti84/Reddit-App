@@ -1,18 +1,29 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {SidebarComponent} from './sidebar.component';
 import {MatListModule} from "@angular/material/list";
-import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
+import {SidebarItemComponent} from './sidebar-item/sidebar-item.component';
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {SidebarContentComponent} from './sidebar-content/sidebar-content.component';
+import {SharedModule} from "../shared.module";
 
 @NgModule({
-  declarations: [SidebarComponent, SidebarItemComponent],
+  declarations: [
+    SidebarComponent,
+    SidebarItemComponent,
+    SidebarContentComponent
+  ],
   exports: [
-    SidebarComponent
+    SidebarComponent,
+    SidebarContentComponent
   ],
   imports: [
-    CommonModule,
-    MatListModule
-  ]
+    SharedModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
+  ],
+  providers: []
 })
 export class SidebarModule {
 }

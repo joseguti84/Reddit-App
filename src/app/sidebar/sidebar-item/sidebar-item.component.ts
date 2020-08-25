@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from "../../shared/models/post";
-import * as moment from 'moment';
+import {RedditService} from "../../shared/services/reddit.service";
 
 @Component({
   selector: 'app-sidebar-item',
@@ -10,18 +10,25 @@ import * as moment from 'moment';
 export class SidebarItemComponent implements OnInit {
 
   @Input() post: Post;
-  @Output() selectPost = new EventEmitter<Post>();
 
-  constructor() { }
+  constructor(private redditService: RedditService) {
+  }
 
   ngOnInit(): void {
   }
-  getEntryDate = (date) => {
-    const now = moment();
-    return moment.duration(moment.unix(date).diff(now)).humanize();
-  }
 
   onSelectPost = (post) => {
-    // TODO: display the selected post
-  }
+    this.redditService.setSelectedPost(post);
+    //TODO: review the reddit api
+    /*this.redditService.readPost(`t1_${post.id}`).subscribe(response => {
+      console.log(response);
+    });*/
+  };
+
+  dismissPost = (post) => {
+    //TODO: review the reddit api
+    /*this.redditService.dismissPost(`t1_${post.id}`).subscribe(response => {
+      console.log(response);
+    });*/
+  };
 }
