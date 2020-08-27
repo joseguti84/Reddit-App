@@ -1,4 +1,4 @@
-import { Reddit } from './reddit';
+import {Reddit} from './reddit';
 
 describe('Reddit', () => {
   it('should create an instance', () => {

@@ -1,13 +1,13 @@
 <div class="sidebar-content" *ngIf="selectedPost">
   <div class="sidebar-content__title">
-    <h1>{{selectedPost.author}}</h1>
-    <span>{{selectedPost.date | entryDate}}</span>
+    <h1 class="sidebar-content__title__author">{{selectedPost.author}}</h1>
+    <span class="sidebar-content__title__date">{{selectedPost.date | entryDate}}</span>
   </div>
   <div class="sidebar-content__detail">
-    <img [src]="getImage(selectedPost)"/>
-    <span>{{selectedPost.title}}</span>
+    <img class="sidebar-content__detail__image" [src]="getImage(selectedPost)"/>
+    <span class="sidebar-content__detail__name">{{selectedPost.title}}</span>
   </div>
   <div class="sidebar-content__footer">
-    <strong>{{selectedPost.num_comments}} comments</strong>
+    <strong class="sidebar-content__footer__comments">{{selectedPost.num_comments}} comments</strong>
   </div>
 </div>

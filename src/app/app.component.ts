@@ -3,7 +3,6 @@ import {MediaMatcher} from "@angular/cdk/layout";
 import * as Hammer from 'hammerjs';
 import {MatSidenav} from "@angular/material/sidenav";
 import {Post} from "./shared/models/post";
-import {RedditService} from "./shared/services/reddit.service";
 
 @Component({
   selector: 'app-root',
@@ -22,8 +21,7 @@ export class AppComponent implements OnDestroy {
 
   constructor(changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
-              elementRef: ElementRef,
-              private redditService: RedditService) {
+              elementRef: ElementRef) {
     this.mobileQuery = media.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
