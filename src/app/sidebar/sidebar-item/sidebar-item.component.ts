@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from "../../shared/models/post";
 import {RedditService} from "../../shared/services/reddit.service";
 import {getPostImage} from "../../shared/utilities";
@@ -11,8 +11,10 @@ import {getPostImage} from "../../shared/utilities";
 export class SidebarItemComponent implements OnInit {
 
   @Input() post: Post;
+  @Output() dismissPost = new EventEmitter<Post>();
+  @Output() selectPost = new EventEmitter<Post>();
 
-  constructor(private redditService: RedditService) {
+  constructor() {
   }
 
   ngOnInit(): void {
@@ -23,17 +25,10 @@ export class SidebarItemComponent implements OnInit {
   };
 
   onSelectPost = (post) => {
-    this.redditService.setSelectedPost(post);
-    //TODO: review the reddit api
-    /*this.redditService.readPost(`t1_${post.id}`).subscribe(response => {
-      console.log(response);
-    });*/
+    this.selectPost.emit(post);
   };
 
-  dismissPost = (post) => {
-    //TODO: review the reddit api
-    /*this.redditService.dismissPost(`t1_${post.id}`).subscribe(response => {
-      console.log(response);
-    });*/
+  onDismissPost = (post) => {
+    this.dismissPost.emit(post);
   };
 }

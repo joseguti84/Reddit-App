@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {MediaMatcher} from "@angular/cdk/layout";
 import * as Hammer from 'hammerjs';
 import {MatSidenav} from "@angular/material/sidenav";
@@ -10,10 +10,11 @@ import {RedditService} from "./shared/services/reddit.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements OnDestroy {
 
   mobileQuery: MediaQueryList;
   post: Post = null;
+
   @ViewChild(MatSidenav)
   public sidenav: MatSidenav;
 
@@ -33,14 +34,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  ngAfterViewInit(): void {
-    this.redditService.getSelectedPost().subscribe(post => {
-      this.post = post;
-      if (this.mobileQuery.matches) {
-        this.sidenav.close();
-      }
-    });
-  }
+  onSelectPost = (post) => {
+    this.post = post;
+    if (this.mobileQuery.matches) {
+      this.sidenav.close();
+    }
+  };
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);

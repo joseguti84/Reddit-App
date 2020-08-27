@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {Post} from "../models/post";
-import {map} from "rxjs/operators";
+import {filter, map} from "rxjs/operators";
 import {Reddit} from "../models/reddit";
 
 @Injectable({
@@ -23,8 +23,8 @@ export class RedditService {
     this.selectedPost.next(post);
   }
 
-  getTopPosts(count = 50): Observable<any> {
-    return this.http.get(`https://www.reddit.com/r/all/top.json?limit=${count}`).pipe(map((response: Reddit) => {
+  getTopPosts(count = 50, after = ''): Observable<any> {
+    return this.http.get(`https://www.reddit.com/r/all/top.json?limit=${count}${after ? '&after=' + after : ''}`).pipe(map((response: Reddit) => {
       if (response.data && response.data.children) {
         return response.data.children.map(children => {
           return Post.fromJson(children.data);
@@ -32,13 +32,5 @@ export class RedditService {
       }
       return [];
     }));
-  }
-
-  dismissPost(id): Observable<any> {
-    return this.http.post(`https://www.reddit.com/api/hide`, {id: id});
-  }
-
-  readPost(id): Observable<any> {
-    return this.http.post(`https://www.reddit.com/api/read_message`, {id: id});
   }
 }

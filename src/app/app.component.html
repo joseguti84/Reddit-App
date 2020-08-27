@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidebar__container">
   <mat-sidenav [opened]="!mobileQuery.matches" [mode]="mobileQuery.matches ? 'over' : 'side'">
-    <app-sidebar></app-sidebar>
+    <app-sidebar (selectPost)="onSelectPost($event)"></app-sidebar>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-sidebar-content [selectedPost]="post"></app-sidebar-content>
