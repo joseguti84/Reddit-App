@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Post} from "../../shared/models/post";
-import {RedditService} from "../../shared/services/reddit.service";
 import {getPostImage} from "../../shared/utilities";
 
 @Component({
